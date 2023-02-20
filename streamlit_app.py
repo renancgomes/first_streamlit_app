@@ -5,7 +5,7 @@ my_fruit_list = pandas.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.co
 
 streamlit.title('The new healthy restaurant!')
 
-streamlit.header('Menu')
+streamliter.header('Menu')
 
 streamlit.text('🥣 Food!')
 streamlit.header('🍞 Breakfast Menu')
