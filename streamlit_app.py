@@ -45,3 +45,12 @@ streamlit.write('The user entered ', fruit_choice)
 fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
 # write your own comment - what does this do?
 streamlit.dataframe(fruityvice_normalized)
+
+my_cur = my_cnx.cursor()
+my_cur.execute("SELECT * from fruit_load_list")
+my_data_rows = my_cur.fetchall()
+streamlit.header("The Fruit List Contains")
+streamlit.dataframe(my_data_rows)
+
+fruit_add = streamlit.text_input('What fruit would you to add?','')
+streamlit.write('The added ', fruit_add)
