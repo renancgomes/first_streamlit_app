@@ -4,7 +4,7 @@ import requests
 import snowflake.connector
 from urllib.error import URLError
 
-my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+
 
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
 
@@ -57,14 +57,19 @@ except URLError as e:
 # write your own comment - what does this do?
 #streamlit.dataframe(fruityvice_normalized)
 
-streamlit.stop
-
-my_cur = my_cnx.cursor()
-my_cur.execute("SELECT * from fruit_load_list")
-my_data_rows = my_cur.fetchall()
+#streamlit.stop
 streamlit.header("The Fruit List Contains")
-streamlit.dataframe(my_data_rows)
+
+def get_fruit_load_list():
+  whit my_cur = my_cnx.cursor():
+  my_cur.execute("SELECT * from fruit_load_list")
+  my_data_rows = my_cur.fetchall()
+
+if streamlit.button('Get fruit Load List'):
+  my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+  my_data_rows = get_fruit_load_list()
+  streamlit.dataframe(my_data_rows)
 
 fruit_add = streamlit.text_input('What fruit would you to add?','')
 streamlit.write('The added ', fruit_add)
-my_cur.execute("insert into fruit_load_list values ('from streamlit')")
+#my_cur.execute("insert into fruit_load_list values ('from streamlit')")
