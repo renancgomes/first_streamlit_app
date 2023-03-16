@@ -11,8 +11,8 @@ from sklearn.metrics import accuracy_score
 
 df = pd.read_csv('pet_food_customer_orders.csv')
 
-X = df.drop('wet_food_order_number', axis=1)
-y = df['wet_food_order_number']
+X = df.drop('pet_food_tier', axis=1)
+y = df['pet_food_tier']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 
 clf = DecisionTreeClassifier(random_state=42)
