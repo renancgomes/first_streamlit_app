@@ -4,14 +4,15 @@ import requests
 import snowflake.connector
 from urllib.error import URLError
 
-import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
 
-df = pd.read_csv('pet_food_customer_orders.csv')
+df = pandas.read_csv('pet_food_customer_orders.csv')
 
 df.head()
+
+streamlit.dataframe(df)
 
 #X = df.drop('pet_food_tier', axis=1)
 #y = df['pet_food_tier']
