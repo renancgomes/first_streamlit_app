@@ -4,6 +4,25 @@ import requests
 import snowflake.connector
 from urllib.error import URLError
 
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score
+
+df = pd.read_csv('pet_food_customer_orders.csv')
+
+X = df.drop('wet_food_order_number', axis=1)
+y = df['wet_food_order_number']
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+clf = DecisionTreeClassifier(random_state=42)
+
+clf.fit(X_train, y_train)
+
+y_pred = clf.predict(X_test)
+
+accuracy = accuracy_score(y_test, y_pred)
+print("Accuracy:", accuracy)
 
 
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
